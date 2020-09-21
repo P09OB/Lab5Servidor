@@ -24,6 +24,7 @@ public class Main extends PApplet {
 	OutputStream os;
 	BufferedReader reader;
 	BufferedWriter writer;
+	String name;
 	int cambio;
 	boolean confi;
 	
@@ -60,25 +61,31 @@ public class Main extends PApplet {
 	public void draw() {
 		
 		
+		
+		
+		
+		
 		switch(cambio){
 		
 		case 0:
 			
 			background(109, 104, 117);
-			text("HOLA",50,50,50,50);
+			textSize(20);
+			text("Ingrese su usuario y contraseña desde su teléfono móvil",100,200,334, 80);
 			
 			break;
 			
 		case 1:
 			background(181, 131, 141);
-			text("ENTRAMOS",50,50,50,50);
+			text("Bienvenido",100,200);
+			text(name,100,240);
 			
 			break;
 			
 			
 		}
 		
-		
+		text("X:"+" " +mouseX+"  "+"Y:"+" "+mouseY,mouseX,mouseY);
 		
 	}
 	
@@ -124,28 +131,31 @@ new Thread(
 							
 							for(Usuario e : users) {
 								
-								String name = e.getUsername();
+								name = e.getUsername();
 								String password = e.getPassword();
 								
-								if(name.equals(obj.getUsername()) && password.equals(obj.getPassword())) {
+								if(name.contains(obj.getUsername()) && password.contains(obj.getPassword())) {
 									
 									
 									System.out.println("ES CORRECTO");
 									cambio =1;
-									String ID = UUID.randomUUID().toString();
+									
 									confi = true;
-									Confirmacion con = new Confirmacion(ID,confi);
-									String json = gson.toJson(con);
-									enviar(json);
 									
 					
 								} else {
 									
+									confi = false;
 									System.out.println("NO REGISTRADO");
 									cambio =0;
-									confi = false;
+									
 									
 								}
+								String ID = UUID.randomUUID().toString();
+								Confirmacion con = new Confirmacion(ID,confi);
+								String json = gson.toJson(con);
+								enviar(json);
+								
 
 							
 							}
