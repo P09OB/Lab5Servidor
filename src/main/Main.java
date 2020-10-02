@@ -48,9 +48,12 @@ public class Main extends PApplet {
 		cambio =0;
 		String id = UUID.randomUUID().toString();
 		String id2 = UUID.randomUUID().toString();
+		String id3 = UUID.randomUUID().toString();
+
 		
 		users.add(new Usuario(id,"paula","372628hd"));
 		users.add(new Usuario(id2,"aron","5938392"));
+		users.add(new Usuario(id3,"maria09","123456"));
 		
 		servidor();
 		
@@ -60,11 +63,7 @@ public class Main extends PApplet {
 	
 	public void draw() {
 		
-		
-		
-		
-		
-		
+	
 		switch(cambio){
 		
 		case 0:
@@ -80,6 +79,11 @@ public class Main extends PApplet {
 			text("Bienvenido",100,200);
 			text(name,100,240);
 			
+			break;
+			
+		case 3:
+			background(181, 131, 141);
+			text("los datos ingresados son incorrectos",100,200);
 			break;
 			
 			
@@ -147,7 +151,7 @@ new Thread(
 									
 									confi = false;
 									System.out.println("NO REGISTRADO");
-									cambio =0;
+									cambio =3;
 									
 									
 								}
